@@ -125,6 +125,7 @@
   .skt{color:var(--txt)}
   /* ---- モンスター詳細モーダル ---- */
   .dback{position:fixed;inset:0;background:rgba(0,0,0,.66);z-index:100;display:flex;align-items:center;justify-content:center;padding:14px}
+  .dback[hidden]{display:none!important}   /* hidden属性をCSSのdisplay:flexで打ち消さない */
   .dcard{background:var(--panel);border:1px solid var(--line);border-radius:16px;max-width:540px;width:100%;max-height:86vh;overflow:auto;padding:18px;position:relative}
   .dclose{position:absolute;top:10px;right:12px;background:var(--panel2);border:1px solid var(--line);color:var(--txt);width:34px;height:34px;border-radius:50%;font-size:19px;line-height:1;cursor:pointer}
   .dhead{display:flex;align-items:center;gap:9px;padding-right:40px}
