@@ -2,7 +2,15 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0a0e1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ワリーナ盤">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
 <title>ワリーナ ドラフト盤</title>
 <style>
   :root{
@@ -218,6 +226,13 @@
     /* 「i」ボタンをタップしやすく */
     .binfo{width:32px;height:32px;line-height:30px;font-size:14px}
     .catrow{padding:9px 8px}
+  }
+  /* ============ PWA: セーフエリア（iPhoneのノッチ/ホームバー） ============ */
+  header{padding-top:calc(10px + env(safe-area-inset-top,0px))}
+  .foot{padding-bottom:calc(34px + env(safe-area-inset-bottom,0px))}
+  @media(max-width:640px){
+    header{padding-top:calc(9px + env(safe-area-inset-top,0px))}
+    .dcard{padding-bottom:calc(26px + env(safe-area-inset-bottom,0px))}
   }
 </style>
 </head>
@@ -745,6 +760,14 @@ function closeDetail(){ $("#detailBack").hidden=true; }
 $("#dClose").onclick=closeDetail;
 $("#detailBack").onclick=e=>{ if(e.target===$("#detailBack")) closeDetail(); };
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeDetail(); });
+</script>
+<script>
+/* PWA: サービスワーカー登録（オフライン起動用） */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').catch(e=>console.warn('SW register failed',e));
+  });
+}
 </script>
 </body>
 </html>
