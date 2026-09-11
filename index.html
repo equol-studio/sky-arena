@@ -636,7 +636,7 @@ function banAdvice(){
   const cand=list.filter(m=>!banned.has(m.id)).map(m=>{
     const st=stOf(m); const reasons=[];
     let score=threat(m)*0.5;                                    // 個体の脅威
-    if(st){ score+=st.ban*0.6; if(st.ban>=30) reasons.push(`実BAN率${st.ban}%`); }
+    if(st){ score+=st.ban*0.6; }
     // ②急所: 高勝率コアの片割れ
     const inSyn=syn.filter(s=>s.a===m.nameEn||s.b===m.nameEn);
     if(inSyn.length){
